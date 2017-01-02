@@ -21,11 +21,14 @@ dinner<-meals$dinner
 ### Bonus ### 
 # Create a list that has the number of items you ate for each meal
 
+#my answer
 lens<-list(bf=length(meals$breakfast),ln=length(meals$lunch),dn=length(meals$dinner))
+#better one
+ items <- lapply(meals, length)
+ 
+  # Write a function that adds pizza to every meal
 
-
- # Write a function that adds pizza to every meal
-
+ #My very long function
 AddPizza<-function(x){
   
   y<-list()
@@ -38,8 +41,15 @@ AddPizza<-function(x){
   }
   return(y)
 }
+ #a shorter way
+ AddPizza <- function(x) {
+   x <- c(x, 'pizza')
+ }
  
 # Add pizza to every meal!
- 
+
+ #with my function
  AddPizza(meals)
 
+ #this one is good as well and needed with the other answer
+ better.meals <- lapply(meals, AddPizza)
