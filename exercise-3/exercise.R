@@ -1,13 +1,13 @@
 # Create a vector of 100 employees ("Employee 1", "Employee 2", ... "Employee 100)
 
-emp<-sapply(1:200, function(x) paste("Employee", x))
+emp<-sapply(1:100, function(x) paste("Employee", x))
 
 # Create a vector of 2014 salaries using the runif function
 
-sal14<-runif(200,1600,2200)
+sal14<-runif(100,1600,2200)
 
 # Create a vector of 2015 salaries that are typically higher than the 2014 salaires (use runif again)
-sal15<-runif(200,1700,2300)
+sal15<-runif(100,1700,2300)
 
 # Create a data.frame 'salaries' by combining the vectors you just made
 salaries<-data.frame(sal14,sal15)
@@ -56,5 +56,18 @@ mean(salaries$raise[salaries$got.raise==F])
 ### Double Bonus (no answer given) ###
 
 # Repeat the above experiment 100 times, tracking the loss each time.
+emp<-sapply(1:100, function(x) paste("run", x))
+salaries<-data.frame(emp)
+
+for (i in 1:10000){
+  sal14<-runif(100,1600,2200)
+  sal15<-runif(100,1700,2300)
+  dif<-sal15-sal14
+  tmp<-data.frame(dif)
+  tmp$got.raise<-tmp$dif>0
+  salaries[i,2]<-mean(tmp$dif[tmp$got.raise==F])
+  
+}
+mean(salaries$V2)
 # Does the average loss equal what you expect?
 # What about 10,000 times?
